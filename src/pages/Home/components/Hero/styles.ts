@@ -1,10 +1,14 @@
 import styled from "styled-components";
+import backgroundImg from '../../../../assets/background.svg'
 
 export const HeroWrapper = styled.section`
-    max-width:  70ren;
     display: flex;
+    padding: 10rem;
     justify-content: space-between;
     gap: 3.5rem;
+    background-image: url(${backgroundImg}) ;
+    background-repeat: no-repeat;
+    background-size: cover;
     
 `
 
