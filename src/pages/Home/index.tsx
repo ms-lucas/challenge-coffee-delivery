@@ -1,7 +1,7 @@
 import { CoffeCard } from "./components/CoffeCard";
 import { Hero } from "./components/Hero";
 
-import expressoTradicionalImage from '../../assets/expresso-tradicional.svg'
+import coffeList from "./coffes.json"
 
 import { CoffeList, CoffeSectionWrapper } from './styles'
 
@@ -12,54 +12,18 @@ export function Home() {
             <CoffeSectionWrapper>
                 <h1>Nossos Cafés</h1>
                 <CoffeList>
-                    <CoffeCard 
-                        name="Expresso Tradicional" 
-                        description="O tradicional café feito com água quente e grãos moídos"
-                        price="9,90"
-                        imagePath={expressoTradicionalImage}
-                        tags={['TRADICIONAL', 'GELADO', 'COM LEITE']}
-                    />
-
-                     <CoffeCard 
-                        name="Expresso Tradicional" 
-                        description="O tradicional café feito com água quente e grãos moídos"
-                        price="9,90"
-                        imagePath={expressoTradicionalImage}
-                        tags={['TRADICIONAL', 'GELADO', 'COM LEITE', 'TRADICIONAL']}
-                    />
-                     <CoffeCard 
-                        name="Expresso Tradicional" 
-                        description="O tradicional café feito com água quente e grãos moídos"
-                        price="9,90"
-                        imagePath={expressoTradicionalImage}
-                        tags={['TRADICIONAL', 'GELADO', 'COM LEITE', 'TRADICIONAL']}
-                    /> <CoffeCard 
-                        name="Expresso Tradicional" 
-                        description="O tradicional café feito com água quente e grãos moídos"
-                        price="9,90"
-                        imagePath={expressoTradicionalImage}
-                        tags={['TRADICIONAL', 'GELADO', 'COM LEITE', 'TRADICIONAL']}
-                    />
-                     <CoffeCard 
-                        name="Expresso Tradicional" 
-                        description="O tradicional café feito com água quente e grãos moídos"
-                        price="9,90"
-                        imagePath={expressoTradicionalImage}
-                        tags={['TRADICIONAL', 'GELADO', 'COM LEITE', 'TRADICIONAL']}
-                    /> <CoffeCard 
-                        name="Expresso Tradicional" 
-                        description="O tradicional café feito com água quente e grãos moídos"
-                        price="9,90"
-                        imagePath={expressoTradicionalImage}
-                        tags={['TRADICIONAL', 'GELADO', 'COM LEITE', 'TRADICIONAL']}
-                    />
-                     <CoffeCard 
-                        name="Expresso Tradicional" 
-                        description="O tradicional café feito com água quente e grãos moídos"
-                        price="9,90"
-                        imagePath={expressoTradicionalImage}
-                        tags={['TRADICIONAL', 'GELADO', 'COM LEITE', 'TRADICIONAL']}
-                    />
+                     {coffeList.map((coffe) => {
+                        return <CoffeCard 
+                            key={coffe.id} 
+                            id={coffe.id}
+                            name={coffe.name} 
+                            description={coffe.description} 
+                            imagePath={coffe.imagePath} 
+                            price={coffe.price}
+                            tags={coffe.tags}
+                        />
+                             
+                     })}
                 </CoffeList>
             </CoffeSectionWrapper>
         </>

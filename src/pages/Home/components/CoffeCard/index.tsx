@@ -1,19 +1,42 @@
 import { ShoppingCart } from 'phosphor-react'
 import { CartButton, CoffeCardFooter, CoffeCardHeader, CoffeCardMain, CoffeCardWrapper, Price, Tag, TagsWrapper } from "./styles";
 import { Input } from '../../../../components/Input';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { CartContext } from '../../../../contexts/CartContext';
 
 interface CoffeCardProps {
+    id: string,
     name: string,
     description: string,
-    price: string,
+    price: number,
     imagePath: string,
     tags: string[]
 }
 
-export function CoffeCard({ name, description, price, imagePath, tags }: CoffeCardProps) {
-
+export function CoffeCard({ id, name, description, price, imagePath, tags }: CoffeCardProps) {
     const [quantity, setQuantity] = useState<number>(0)
+
+    const { addNewItem } = useContext(CartContext)
+
+    function handleAddNewItem() {
+
+        if(quantity === 0) {
+            alert("Quantitidade não informada")
+            return
+        }
+
+        addNewItem({
+            id,
+            name,
+            description,
+            imagePath,
+            quantity,
+            price,
+            tags
+        })
+
+        setQuantity(0)
+    }
 
     function incrementQuantity() {
         if (quantity >= 99) {
@@ -57,7 +80,7 @@ export function CoffeCard({ name, description, price, imagePath, tags }: CoffeCa
                     onIncrementValue={incrementQuantity}
                     onDecrementValue={decrementQuantity}
                 />
-                <CartButton><ShoppingCart size={22} weight="fill" /></CartButton>
+                <CartButton onClick={handleAddNewItem}><ShoppingCart size={22} weight="fill" /></CartButton>
 
             </CoffeCardFooter>
         </CoffeCardWrapper>
